@@ -10,7 +10,7 @@ adjectives = ["веселый", "яркий", "зеленый", "утопичн�
 ["лес завтра зеленый", "город вчера веселый"]
 '''
 
-from random import randint
+from random import choice, randint
 
 # ВАРИАНТ РЕШЕНИЯ №1
 def get_jokes(amount: int):
@@ -41,7 +41,7 @@ def get_jokes_1(amount: int):
 
     while amount > 0:
         for key in jokes_dict.keys():
-            interim_list.append(f"{jokes_dict[key][randint(0, len(jokes_dict[key]) - 1)]}")
+            interim_list.append(f"{choice(jokes_dict[key])}")
 
         jokes_list.append(' '.join(interim_list))
         interim_list.clear()
@@ -53,4 +53,4 @@ def get_jokes_1(amount: int):
 
 if __name__ == "__main__":
     print(get_jokes(2))
-    print(get_jokes_1(2))
+    print(get_jokes_1(3))
