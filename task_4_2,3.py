@@ -1,4 +1,5 @@
 from requests import get, utils
+import datetime
 
 
 def currency_rates(currency):
@@ -18,13 +19,13 @@ def currency_rates(currency):
         if i[0] == 'CharCode':
             code = i[1]
         elif i[0] == 'Value':
-            currency_dict[code] = [name, float(i[1].replace(',', '.'))]
-        elif i[0] == 'Name':
-            name = i[1]
+            currency_dict[code] = float(i[1].replace(',', '.'))
 
-    return currency_dict.get(currency.upper())
+    need_date = datetime.datetime.strptime(_new_split_list[2][0].split('"')[1], "%d.%m.%Y").date()
+
+    return currency_dict.get(currency.upper()), need_date
 
 
-print(currency_rates('usd'))
-print(currency_rates('EUR'))
-print(currency_rates('PLL'))
+print(*currency_rates('usd'))
+print(*currency_rates('EUR'))
+print(*currency_rates('PLL'))
