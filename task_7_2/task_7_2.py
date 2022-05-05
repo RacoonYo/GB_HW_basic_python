@@ -11,6 +11,7 @@ except OSError as e:
 finally:
     f.close()
 
+
 def make_dir(yaml_dict: dict, root=os.getcwd()):
     for key, value in yaml_dict.items():
         try:
