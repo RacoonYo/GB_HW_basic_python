@@ -1,21 +1,11 @@
-import re
 from functools import reduce
-
-
-class ValidDimensionsError(Exception):
-    def __init__(self, txt):
-        self.txt = txt
 
 
 class OfficeEquipment:
     # в dimensions передавать str в формате 10*20*30
     # в color передавать True если уст-во цветное и False если черно-белое
     def __init__(self, model: str, dimensions: str, color: bool, paper_format: str):
-        if type(dimensions) == str and re.fullmatch(r'(?:\d+(?:\.\d+)*\*){2}\d+(?:\.\d+)*', dimensions):
-            self.dimensions = dimensions
-        else:
-            raise ValidDimensionsError(f'{dimensions} - not valid dimensions format')
-
+        self.dimensions = dimensions
         self.model = model
         self.color = color
         self.paper_format = paper_format
@@ -53,7 +43,7 @@ class Copier(OfficeEquipment):
 
 
 class Warehouse:
-    def __init__(self, location: str, size: int):
+    def __init__(self, location: str, size: float):
         self.location = location
         self.size = size
         self.free_place = self.size
